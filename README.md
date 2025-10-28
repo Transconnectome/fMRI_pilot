@@ -82,5 +82,3 @@ o	혈류역학 지연 보정 (Hemodynamic Delay Correction): 혈류역학적 반
 o	이상치 제거 (Despiking): 각 run 내에서 ±3 표준편차를 벗어나는 극단적인 값들을 줄인다.
 o	블록 평균화 (Block Averaging): 각 자극 블록(영상 제시 기간 + 이후 2초 휴지기) 내의 신호를 평균하여 개별 자극에 대한 단일 반응 값을 산출한다.
 o	표준화 (Standardization): 최종적으로, 모든 자극에 대한 데이터를 각 복셀 단위로 z-점수화(z-score)하여 복셀 간의 기본 활성화 수준 차이를 정규화한다.
-
-<img width="451" height="678" alt="image" src="https://github.com/user-attachments/assets/57596ba0-1975-4e00-a639-c51d256000f1" />
