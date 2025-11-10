@@ -26,7 +26,7 @@ def get_args():
     parser.add_argument("--instruction_time", type=float, default=3.0, help="instruction display time")
 
     # args for display
-    parser.add_argument("--movie_width_pixel", type=int, default=1280, help="movie width pixel size(default is 1280)")
+    parser.add_argument("--movie_width_pixel", type=int, default=1280, help="movie width pixel size(default is 1280) however for degree 12 set 950 needed")
 
     # args for scanner trigger
     parser.add_argument("--use_scanner_trigger", action="store_true", default=True, help="wait for scanner trigger to start")
