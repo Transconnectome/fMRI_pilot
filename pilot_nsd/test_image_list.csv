@@ -1,6 +1,0 @@
-session,run,image_path,order,is_repeat
-1,1,"/path/to/images/img_001.png",1,0
-1,1,"/path/to/images/img_002.png",2,0
-1,1,"/path/to/images/img_003.png",3,0
-1,1,"/path/to/images/img_001.png",4,1
-1,1,"/path/to/images/img_004.png",5,0
