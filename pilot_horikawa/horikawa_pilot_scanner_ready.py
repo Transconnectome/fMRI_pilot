@@ -12,7 +12,7 @@ def get_args():
     parser.add_argument("--sub_id", type=str, default="01", help="subject id but only number")
     parser.add_argument("--session", type=int, default=1, help="current session number to run")
     parser.add_argument("--video_csv_path", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/2510_fMRI/pilot_test/complete_video_list.csv", help="csv path that has video path information")
-    parser.add_argument("--output_dir", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/outputs/1124_3")
+    parser.add_argument("--output_dir", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/outputs/1125_proeject_check_wm1")
     parser.add_argument("--shuffle_videos", action="store_true", default=False, help="shuffle video sequence")
 
     # args for basic rest
@@ -228,7 +228,7 @@ try:
             if run_idx > 1:
                 ready_msg = visual.TextStim(
                     win,
-                    text="다음 Run을 준비하세요.\n실험자가 Ready 키를 누르면 시작 대기 상태가 됩니다.",
+                    text="Run이 종료되었습니다.\n다음 Run이 시작되기 전까지 휴식을 취해주세요.",
                     color=FIX_COLOR,
                     height=0.05,
                     font="Malgun Gothic",
@@ -434,10 +434,35 @@ try:
         logging.info(f"[Saved] {tsv_path}")
 
         # screen run ended
-        end_msg = visual.TextStim(win, text=f"Run {run} complete.\nPlease wait.", color=FIX_COLOR, height=0.05)
+        # 1) session 1 run 1 이면 Practice session complete 출력
+        if CURRENT_SESSION == 1 and run == 1:
+            end_text = "Practice session complete.\nPlease wait."
+        else:
+            end_text = f"Run {run} complete.\nPlease wait."
+
+        end_msg = visual.TextStim(
+            win,
+            text=end_text,
+            color=FIX_COLOR,
+            height=0.05
+        )
         end_msg.draw()
         win.flip()
         core.wait(2.0)
+
+        # 2) 이 세션의 마지막 run이 끝났다면 전체 종료 메시지 20초 띄우기
+        if run_idx == len(runs_in_session):
+            final_msg = visual.TextStim(
+                win,
+                text="모든 실험이 종료되었습니다.\n수고하셨습니다.",
+                color=FIX_COLOR,
+                height=0.05,
+                font="Malgun Gothic",
+                wrapWidth=1.6,
+            )
+            final_msg.draw()
+            win.flip()
+            core.wait(20.0)
 
     logging.info("=== Experiment finished ===")
 
