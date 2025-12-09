@@ -10,9 +10,9 @@ print("initial import is ok")
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--sub_id", type=str, default="01", help="subject id but only number")
-    parser.add_argument("--session", type=int, default=1, help="current session number to run")
-    parser.add_argument("--video_csv_path", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/2510_fMRI/pilot_test/complete_video_list.csv", help="csv path that has video path information")
-    parser.add_argument("--output_dir", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/outputs/1125_proeject_check_wm1")
+    parser.add_argument("--session", type=int, default=4, help="current session number to run")
+    parser.add_argument("--video_csv_path", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/2510_fMRI/pilot_test/complete_video_list_1126.csv", help="csv path that has video path information")
+    parser.add_argument("--output_dir", type=str, default="C:/Users/이태양/Desktop/LAB/EmoFM/outputs/main_experiment_TEST4/1205_hori-02")
     parser.add_argument("--shuffle_videos", action="store_true", default=False, help="shuffle video sequence")
 
     # args for basic rest
@@ -435,9 +435,15 @@ try:
 
         # screen run ended
         # 1) session 1 run 1 이면 Practice session complete 출력
-        if CURRENT_SESSION == 1 and run == 1:
-            end_text = "Practice session complete.\nPlease wait."
+        if CURRENT_SESSION == 1:
+            if run == 1:
+                # session 1 run 1 은 practice
+                end_text = "Practice session complete.\nPlease wait."
+            else:
+                # session 1의 나머지 run들은 run-1로 표시
+                end_text = f"Run {run-1} complete.\nPlease wait."
         else:
+            # 다른 세션은 원래 run 번호 그대로
             end_text = f"Run {run} complete.\nPlease wait."
 
         end_msg = visual.TextStim(
